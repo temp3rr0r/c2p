@@ -103,6 +103,7 @@ rpnTree.addOperation(new Atom(Double.parseDouble($number.text))); // Store the n
 }
   ;
 
+
 calculationSymbols : symbol+ (COMMENT | LINE_COMMENT)?;
 
 symbol
@@ -191,5 +192,4 @@ PLUS : '+';
 MOD : '%';
 INT : '0'..'9'+;
 DOUBLE : ('0'..'9')+'.' ('0'..'9')+; // In case of double, accept at least one digit before the '.' symbol and one after
-//NEWLINE : '\r'?'\n';
-WS : (' '|'\t'|'\n'|'\r') {$channel = HIDDEN;};
+WS : (' '|'\t'|'\n'|'\r'| EOF) {$channel = HIDDEN;};

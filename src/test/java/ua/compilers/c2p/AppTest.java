@@ -1,13 +1,17 @@
 package ua.compilers.c2p;
 
 import java.io.ByteArrayInputStream;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Paths;
 
 import org.antlr.runtime.ANTLRInputStream;
 import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.RecognitionException;
 
+import ua.compilers.FileHandler.FileHandler;
 import ua.compilers.Grammar.SmallCLexer;
 import ua.compilers.Grammar.SmallCParser;
 
@@ -158,6 +162,45 @@ public class AppTest
 		InputStream is = new ByteArrayInputStream( testFile.getBytes("UTF-8") );
 
 		ANTLRInputStream input = new ANTLRInputStream(is);
+		SmallCLexer lexer = new SmallCLexer(input);
+		CommonTokenStream tokens = new CommonTokenStream(lexer);
+
+		System.out.println(testFile);
+		SmallCParser parser = new SmallCParser(tokens);		
+		parser.prog();
+	}
+	
+	public void testBad2() throws IOException, RecognitionException {
+		String filePath = "src\\test\\java\\inputCFiles\\bad2.c";
+		
+		String testFile = FileHandler.readFile(filePath);
+		ANTLRInputStream input = new ANTLRInputStream(new FileInputStream(filePath),"UTF-8");
+		SmallCLexer lexer = new SmallCLexer(input);
+		CommonTokenStream tokens = new CommonTokenStream(lexer);
+
+		System.out.println(testFile);
+		SmallCParser parser = new SmallCParser(tokens);		
+		parser.prog();
+	}
+	
+	public void testBad1() throws IOException, RecognitionException {
+		String filePath = "src\\test\\java\\inputCFiles\\bad1.c";
+		
+		String testFile = FileHandler.readFile(filePath);
+		ANTLRInputStream input = new ANTLRInputStream(new FileInputStream(filePath),"UTF-8");
+		SmallCLexer lexer = new SmallCLexer(input);
+		CommonTokenStream tokens = new CommonTokenStream(lexer);
+
+		System.out.println(testFile);
+		SmallCParser parser = new SmallCParser(tokens);		
+		parser.prog();
+	}
+	
+	public void testBad3() throws IOException, RecognitionException {
+		String filePath = "src\\test\\java\\inputCFiles\\bad3.c";
+		
+		String testFile = FileHandler.readFile(filePath);
+		ANTLRInputStream input = new ANTLRInputStream(new FileInputStream(filePath),"UTF-8");
 		SmallCLexer lexer = new SmallCLexer(input);
 		CommonTokenStream tokens = new CommonTokenStream(lexer);
 
