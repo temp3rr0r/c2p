@@ -208,6 +208,19 @@ public class AppTest
 		SmallCParser parser = new SmallCParser(tokens);		
 		parser.prog();
 	}
+	
+	public void testGood() throws IOException, RecognitionException {
+		String filePath = "src\\test\\java\\inputCFiles\\good.c";
+		
+		String testFile = FileHandler.readFile(filePath);
+		ANTLRInputStream input = new ANTLRInputStream(new FileInputStream(filePath),"UTF-8");
+		SmallCLexer lexer = new SmallCLexer(input);
+		CommonTokenStream tokens = new CommonTokenStream(lexer);
+
+		System.out.println(testFile);
+		SmallCParser parser = new SmallCParser(tokens);		
+		parser.prog();
+	}
 
     /**
      * @return the suite of tests being tested
